@@ -1,0 +1,35 @@
+class Solution {
+public:
+int calPoints(vector<string>& ops) {
+        stack<int> s;
+        int val=0;
+        for(auto x: ops)
+        {
+            if(x=="C")
+            {   val-=s.top();
+                s.pop();
+            }
+            else if(x=="D")
+            {
+                s.push(s.top()*2);
+                val+=s.top();
+            }
+            else if(x=="+")
+            {
+                int a=s.top();
+                s.pop();
+                int b=s.top();
+                s.push(a);
+                s.push(a+b);
+                val+=s.top();
+            }
+            else
+            {   
+                int w=stoi(x);
+                s.push(w);
+                val+=s.top();
+            }
+        }
+        return val;
+    }
+};
