@@ -1,0 +1,47 @@
+class Solution {
+public:
+
+string decodeString(string s) {
+	if(s.length()==0)
+	return s;
+	stack<char> st;
+	string t="",s1="";        
+	for(int i=0;i<s.length();i++)
+	{
+		if(s[i]==']')
+		{	
+			while(st.top()!='[')
+			{
+				t+=st.top();
+				st.pop();
+			}
+			st.pop();
+			int x=0;
+			
+			string x1="";
+			while(!st.empty()&&st.top()>=48&&st.top()<=57)
+			{	
+				x1+=st.top();
+				st.pop();
+				
+			}
+			reverse(x1.begin(),x1.end());
+			x=stoi(x1);
+			reverse(t.begin(),t.end());
+			while(x--)
+			for(int j=0;j<t.length();j++)
+			st.push(t[j]);
+			t="";
+		}
+		else
+		st.push(s[i]);
+	}
+	while(!st.empty())
+	{
+		s1+=st.top();
+		st.pop();
+	}
+	reverse(s1.begin(),s1.end());
+	return s1;
+}
+};
