@@ -1,0 +1,89 @@
+///Linear Search////
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int i=0,j=0;
+        vector<int> v;
+        if(nums1.size()==0||nums2.size()==0)
+            return v;
+        if(nums1.size()<=nums2.size())
+        {
+            for(int i=0;i<nums1.size();i++)
+            {   
+                for(int j=0;j<nums2.size();j++)
+                {
+                    if(nums1[i]==nums2[j])
+                    {
+                        v.push_back(nums1[i]);
+                        break;
+                    }
+                }
+            }
+        
+        }
+        else
+        {
+            for(int i=0;i<nums2.size();i++)
+            {
+                for(int j=0;j<nums1.size();j++)
+                {
+                    if(nums2[i]==nums1[j])
+                    {
+                        v.push_back(nums2[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        set<int> s(v.begin(),v.end());
+        vector<int> v1(s.begin(),s.end());
+        return v1;
+    }
+};
+
+/////Binary Search/////
+
+class Solution {
+public:
+    vector<int> BS(vector<int>& nums1, vector<int>& nums2)
+    {      vector<int> v;
+            for(int i=0;i<nums1.size();i++)
+            {
+                int start=0;
+                int end=nums2.size()-1;
+                while(start<=end)
+                {
+                    int mid=start+(end-start)/2;
+                    if(nums1[i]==nums2[mid])
+                    {
+                        v.push_back(nums1[i]);
+                        break;
+                    }
+                    else if(nums1[i]<nums2[mid])
+                        end=mid-1;
+                    else
+                        start=mid+1;
+                }
+            }
+        return v; 
+    }
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int i=0,j=0;
+        vector<int> v;
+        if(nums1.size()==0||nums2.size()==0)
+            return v;
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        if(nums1.size()<=nums2.size())
+        {       
+            v=BS(nums1,nums2);
+        }
+        else
+        {
+            v=BS(nums2,nums1);
+        }
+        set<int> s(v.begin(),v.end());
+        vector<int> v1(s.begin(),s.end());
+        return v1;
+    }
+};
