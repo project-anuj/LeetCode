@@ -87,3 +87,21 @@ public:
         return v1;
     }
 };
+
+///////using set_intersection()  ////////
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> v(2000),v1;
+        vector<int>::iterator it,st;
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        it=set_intersection(nums1.begin(),nums1.end(),nums2.begin(),nums2.end(),v.begin());
+        for(st=v.begin();st!=it;++st)
+            v1.push_back(*st);
+        set<int> s(v1.begin(),v1.end());
+        vector<int> v2(s.begin(),s.end());
+        return v2;
+    }
+};
