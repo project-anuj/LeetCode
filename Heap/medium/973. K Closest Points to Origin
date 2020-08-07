@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
+        vector<vector<int>> v;
+        vector<int> v1;
+        priority_queue<pair<int,pair<int,int>>> maxH;
+        for(int i=0;i<points.size();i++)
+        {
+            maxH.push({points[i][0]*points[i][0]+points[i][1]*points[i][1],{points[i][0],points[i][1]}});
+            if(maxH.size()>K)
+                maxH.pop();
+        }
+        while(maxH.size()>0)
+        {
+            pair<int,pair<int,int>> ppi=maxH.top();
+            maxH.pop();
+            v1.push_back(ppi.second.first);
+            v1.push_back(ppi.second.second);
+            v.push_back(v1);
+            v1.clear();
+        }
+        return v;
+    }
+};
