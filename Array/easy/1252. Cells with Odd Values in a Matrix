@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int oddCells(int n, int m, vector<vector<int>>& indices) {
+        int count=0;
+        int a[n][m];
+        memset(a,0,sizeof(a));
+        for(int i=0;i<indices.size();i++)
+        {
+            int row=indices[i][0];
+            int column=indices[i][1];
+            for(int j=0;j<m;j++)
+            {
+                a[row][j]++;
+            }
+            for(int j=0;j<n;j++)
+            {
+                a[j][column]++;
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(a[i][j]%2!=0)
+                    count++;
+            }
+        }
+        return count;
+    }
+};
