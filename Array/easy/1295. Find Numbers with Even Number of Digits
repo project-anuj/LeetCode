@@ -1,0 +1,36 @@
+....................O(n^2)...............................
+class Solution {
+public:
+    int findNumbers(vector<int>& nums) {
+        int findEven=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            int countDigit=0;
+            while(nums[i]>0)
+            {
+                nums[i]=nums[i]/10;
+                countDigit++;
+            }
+            if(countDigit%2==0)
+                findEven++;
+                  
+        }
+        return findEven;
+    }
+};
+
+//...............................O(n)..............................
+
+class Solution {
+public:
+    int findNumbers(vector<int>& nums) {
+        int count=0;
+        for(auto x: nums)
+        {
+            string s=to_string(x);
+            if(s.length()%2==0)
+                count++;
+        }
+        return count;
+    }
+};
