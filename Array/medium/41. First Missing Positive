@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        map<int,int> mp;
+        for(auto x:nums)
+            mp[x]++;
+        int i=1;
+        while(mp[i]>0)
+        {
+            i++;
+        }
+        return i;
+    }
+};
+
+............................................................................
