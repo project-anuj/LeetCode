@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+      int i=0,j=0,l=0,missing;
+        while(l<k)
+        {   i++;
+            if(j<arr.size()&&arr[j]==i)
+                j++;
+            else
+            {   l++;
+                missing =i;
+            }
+        }
+        return missing;
+    }
+};
+
+..........................................................................................................................
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+      int missing,counter=0;
+        map<int,int> mp;
+        for(auto x:arr)
+            mp[x]++;
+        for(int i=1;i<5000;i++)
+        {
+            if(mp[i]==0)
+            {
+                missing=i;
+                counter++;
+            }
+            if(counter==k)
+                break;
+        }
+        return missing;
+    }
+};
+
+...........................................................................................................................
