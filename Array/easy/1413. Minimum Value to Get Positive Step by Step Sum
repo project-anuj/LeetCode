@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int minStartValue(vector<int>& nums) {
+        int mn=*min_element(nums.begin(),nums.end());
+        if(mn>=0)
+            return 1;
+        int startValue=0,temp=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            temp+=nums[i];
+            if(temp<startValue)
+                startValue=temp;
+        }
+        return abs(startValue)+1;
+    }
+};
+
+.............................................................................................
+
+class Solution {
+public:
+    int minStartValue(vector<int>& nums) {
+        vector<int> minPrefixSum;
+        int temp=0;
+        for(int i=0;i<nums.size();i++)
+        {   temp+=nums[i];
+            minPrefixSum.push_back(temp);
+        }
+        int mn=*min_element(minPrefixSum.begin(),minPrefixSum.end());
+        if(mn<0)
+        return abs(mn)+1;
+        else
+        return 1;
+    }
+};
+
