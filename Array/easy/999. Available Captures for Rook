@@ -1,0 +1,82 @@
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        int rookx=-1,rooky=-1;
+        int count=0;
+        
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {   
+                if(board[i][j]=='R')
+                {
+                    rookx=i;
+                    rooky=j;
+                    break;
+                }
+            }
+            
+            if(rookx!=-1&&rooky!=-1)
+                break;
+        }
+        
+        int i=rookx;
+        int j=rooky-1;
+        while(j>=0)
+        {
+            if(board[i][j]=='.')
+                j--;
+            else if(board[i][j]=='p')
+            {
+                count++;
+                break;
+            }
+            else
+                break;
+        }
+        cout<<"A";
+        i=rookx;
+        j=rooky+1;
+        while(j<8)
+        {
+            if(board[i][j]=='.')
+                j++;
+            else if(board[i][j]=='p')
+            {
+                count++;
+                break;
+            }
+            else
+                break;
+        }
+        i=rookx-1;
+        j=rooky;
+        while(i>=0)
+        {
+            if(board[i][j]=='.')
+                i--;
+            else if(board[i][j]=='p')
+            {
+                count++;
+                break;
+            }
+            else
+                break;
+        }
+        i=rookx+1;
+        j=rooky;
+        while(i<8)
+        {
+            if(board[i][j]=='.')
+                i++;
+            else if(board[i][j]=='p')
+            {
+                count++;
+                break;
+            }
+            else
+                break;
+        }
+        return count;
+    }
+};
