@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& A) {
+        map<char,int> mp,mp1;
+        vector<string> s;
+        for(int j=0;j<A[0].size();j++)
+        {
+            mp[A[0][j]]++;
+        }
+        for(int i=1;i<A.size();i++)
+        {
+            for(int j=0;j<A[i].length();j++)
+            {
+                mp1[A[i][j]]++;
+            }
+            for(auto x:mp)
+                mp[x.first]=min(mp[x.first],mp1[x.first]);
+            mp1.clear();
+        }
+        for(auto x:mp)
+        {   
+            for(int i=0;i<x.second;i++)
+            {
+                s.push_back(string(1,x.first));
+            }
+        }
+        return s;
+    }
+};
