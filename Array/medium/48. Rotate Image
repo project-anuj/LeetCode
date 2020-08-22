@@ -1,0 +1,39 @@
+..............................O(n^2) time O(n) space ..................................................
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        vector<vector<int>> res;
+        vector<int> v;
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=matrix[i].size()-1;j>=0;j--)
+            {
+                v.push_back(matrix[j][i]);
+            }
+            res.push_back(v);
+            v.clear();
+        }
+        matrix=res;
+    }
+};
+
+.....................................O(n^2) time O(1) space ,inplace...................................
+//transpose
+//reverse each row
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=i;j<matrix[i].size();j++)
+            {
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        for(int i=0;i<matrix.size();i++)
+        {
+            reverse(matrix[i].begin(),matrix[i].end());
+        }
+    }
+};
