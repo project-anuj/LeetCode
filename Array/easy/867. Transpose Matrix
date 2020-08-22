@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& A) {
+        vector<vector<int>> trans;
+        vector<int> v;
+        for(int i=0;i<A[0].size();i++)
+        {
+            for(int j=0;j<A.size();j++)
+            {
+                v.push_back(A[j][i]);
+            }
+            trans.push_back(v);
+            v.clear();
+        }
+        return trans;
+    }
+};
