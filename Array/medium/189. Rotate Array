@@ -1,0 +1,15 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        vector<int> res(nums.begin(),nums.end());
+        res.insert(res.end(),nums.begin(),nums.end());
+        int start=nums.size();
+        int j=0;
+        k=k%start;
+        for(int i=start-k;i<2*start-k;i++)
+        {
+            nums[j]=res[i];
+            j++;
+        }
+    }
+};
