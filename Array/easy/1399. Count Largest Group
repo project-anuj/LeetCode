@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int countLargestGroup(int n) {
+        int mx=INT_MIN;
+        map<int,int> mp;
+        for(int i=1;i<=n;i++)
+        {
+            int j=i,sum=0;
+            while(j>0)
+            {
+                sum=sum+j%10;
+                j=j/10;
+            }
+            mp[sum]++;
+        }
+        int count=0;
+        for(auto x:mp)
+            mx=max(mx,mp[x.first]);
+        for(auto x:mp)
+            if(x.second==mx)
+                count++;
+        return count;
+    }
+};
