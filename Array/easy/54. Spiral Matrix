@@ -1,0 +1,45 @@
+..........................................O(m*n) time O(1) space...............................................
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> v;
+        if(matrix.size()==0)
+            return v;
+        int m=matrix.size();
+        int n=matrix[0].size();
+        int row=0,col=0;
+        while(row<m && col<n)
+        {
+            for(int j=col;j<n;j++)
+            {
+                v.push_back(matrix[row][j]);
+            }
+            row++;
+            for(int i=row;i<m;i++)
+            {
+                v.push_back(matrix[i][n-1]);
+            }
+            n--;
+            if(row<m)
+            {
+            for(int j=n-1;j>=col;j--)
+            {
+                v.push_back(matrix[m-1][j]);
+            }
+            m--;
+            }
+            if(col<n)
+            {
+            for(int i=m-1;i>=row;i--)
+            {
+                v.push_back(matrix[i][col]);
+            }
+            col++;
+            }
+        }
+        return v;
+    }
+};
+
+.................................................
