@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int getWinner(vector<int>& arr, int k) {
+        map<int,int> mp;
+        if(k>=arr.size())
+        return *max_element(arr.begin(),arr.end());
+        int mx=arr[0];
+        for(int i=1;i<arr.size();i++)
+        {
+            mx=max(mx,arr[i]);
+            mp[mx]++;
+            if(mp[mx]>=k)
+                break;
+        }
+        return mx;
+    }
+};
