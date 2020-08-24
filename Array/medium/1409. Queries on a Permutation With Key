@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> processQueries(vector<int>& queries, int m) {
+        vector<int> v,res;
+        for(int i=1;i<=m;i++)
+        {
+            v.push_back(i);
+        }
+        
+        for(int i=0;i<queries.size();i++)
+        {
+            for(int j=0;j<m;j++)
+            {   
+                if(v[j]==queries[i])
+                {   res.push_back(j);
+                    v.erase(v.begin()+j);
+                    v.insert(v.begin(),queries[i]);
+                }
+            }
+        }
+        
+        return res;
+    }
+};
