@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int numTimesAllBlue(vector<int>& light) {
+        int moments=0;
+        int total=0;
+        int prefixSum=0;
+        for(int i=1;i<=light.size();i++)
+        {
+            total+=i;
+            prefixSum+=light[i-1];
+            if(total==prefixSum)
+                moments++;
+        }
+        return moments;
+    }
+};
