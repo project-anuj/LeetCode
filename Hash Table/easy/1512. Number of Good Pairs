@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& nums) {
+        int count=0;
+        set<int> s(nums.begin(),nums.end());
+        vector<int> v(s.begin(),s.end());
+        for(int i=0;i<v.size();i++)
+        {
+            int tmp=0;
+            for(int j=0;j<nums.size();j++)
+            {
+                if(v[i]==nums[j])
+                    tmp++;
+            }
+            count=count+tmp*(tmp-1)/2;
+        }
+        return count;
+    }
+};
+
+.............................................using hashmap...........................................
+
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& nums) {
+        map<int,int> mp;
+        int count=0;
+        for(auto x: nums)
+            mp[x]++;
+        for(auto x:mp)
+        {
+            count=count+x.second*(x.second-1)/2;
+        }
+        return count;
+    }
+};
