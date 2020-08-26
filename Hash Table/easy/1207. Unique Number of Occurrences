@@ -1,0 +1,70 @@
+...................................using map........................................
+
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        map<int,int> mp;
+        for(auto x: arr)
+        {   int count=0;
+            for(auto y:arr )
+            {
+                if(x==y)
+                    count++;
+            }
+            cout<<count<<" ";
+            if(mp[count]>0&&mp[count]!=x)
+                return false;
+            else
+                mp[count]=x;;
+        }
+        return true;
+    }
+};
+
+..................................using map and max heap........................................
+
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        map<int,int> mp;
+        for(auto x:arr)
+        {
+            mp[x]++;
+        }
+        priority_queue<int> maxH;
+        for(auto x:mp)
+        {
+            maxH.push(x.second);
+        }
+        while(maxH.size()>1)
+        {
+            int x=maxH.top();
+            maxH.pop();
+            if(x==maxH.top())
+                return false;
+        }
+        return true;
+    }
+};
+
+............................using set..............................
+
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        map<int,int> mp;
+        for(auto x:arr)
+        {
+            mp[x]++;
+        }
+        vector<int>v;
+        for(auto x:mp)
+        {
+            v.push_back(x.second);
+        }
+        set<int> s(v.begin(),v.end());
+        if(v.size()==s.size())
+        return true;
+        return false;
+    }
+};
