@@ -13,3 +13,18 @@ public:
         return count;
     }
 };
+
+.......................using hashmap..............................................
+
+class Solution {
+public:
+    int numJewelsInStones(string J, string S) {
+        map<char,int> mp;
+        int count=0;
+        for(auto x:S)
+            mp[x]++;
+        for(auto x:J)
+            count+=mp[x];
+        return count;
+    }
+};
