@@ -1,0 +1,63 @@
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+        int n=A.size();
+        for(auto x:A)
+        {   int count=0;
+            for(auto y:A)
+            {
+                if(x==y)
+                    count++;
+            }
+            if(count==(n/2))
+                return x;
+        }
+        return -1;
+    }
+};
+
+.......................Since required element is repeated atleast one time............................
+
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+        for(int i=0;i<A.size();i++)
+        {   
+            for(int j=i+1;j<A.size();j++)
+            {
+                if(A[i]==A[j])
+                    return A[i];
+            }
+        }
+        return -1;
+    }
+};
+
+.......................using hashmap.................................................
+
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+        map<int,int> mp;
+        for(int i=0;i<A.size();i++)
+        {
+            if(mp[A[i]]==0)
+                mp[A[i]]++;
+            else
+                return A[i];
+        }
+        return -1;
+    }
+};
+
+..................................................................................
+
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+        int i = 0, j = 0, n = A.size();
+        while (i == j || A[i] != A[j])
+            i = rand() % n, j = rand() % n;
+        return A[i];
+    }
+};
