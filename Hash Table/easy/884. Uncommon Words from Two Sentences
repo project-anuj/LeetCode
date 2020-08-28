@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string A, string B) {
+        map<string,int> mp1,mp2;
+        vector<string> res;
+        string word;
+        stringstream s(A);
+        stringstream s1(B);
+        while(s>>word)
+        {
+            mp1[word]++;
+        }
+        while(s1>>word)
+        {
+            mp2[word]++;
+        }
+        for(auto x:mp1)
+        {   
+            if(mp1[x.first]==1 && mp2[x.first]==0)
+                res.push_back(x.first);
+        }
+        
+        for(auto x:mp2)
+        {   
+            if(mp2[x.first]==1&&mp1[x.first]==0)
+                res.push_back(x.first);
+        }
+        return res;
+    }
+};
