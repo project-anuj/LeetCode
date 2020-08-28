@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<string> findOcurrences(string text, string first, string second) {
+        vector<string> s,res;
+        string word;
+        stringstream it(text);
+        while(it>>word)
+        {
+            s.push_back(word);
+        }
+        for(int i=0;i<s.size()-2;i++)
+        {
+            if(s[i]==first&&s[i+1]==second)
+                res.push_back(s[i+2]);
+        }
+        return res;
+    }
+};
+
+..............................................................................................
+
+class Solution {
+public:
+    vector<string> findOcurrences(string text, string first, string second) {
+        vector<string> res;
+        string word,prev1,prev2;
+        stringstream it(text);
+        it>>word;
+        prev1=word;
+        it>>word;
+        prev2=word;
+        while(it>>word)
+        {
+            if(prev1==first&&prev2==second)
+                res.push_back(word);
+            prev1=prev2;
+            prev2=word;
+        }
+        return res;
+    }
+};
+
