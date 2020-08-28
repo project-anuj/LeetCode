@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        map<char,int> mp;
+        for(auto x: text)
+        {
+            mp[x]++;
+        }
+        int b=mp['b'],a=mp['a'],l=mp['l'],o=mp['o'],n=mp['n'];
+        vector<int> v={b,a,l/2,o/2,n};
+        return *min_element(v.begin(),v.end());
+    }
+};
