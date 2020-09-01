@@ -1,0 +1,42 @@
+class Solution {
+public:
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+        string s="";
+        map<char,int> mp1;
+        int n=licensePlate.length();
+        for(auto x: licensePlate)
+        {   if(isalpha(x))
+            mp1[tolower(x)]++;
+        }
+        for(auto x: words)
+        {
+            map<char,int> mp2;
+            for(auto y: x)
+            {
+                mp2[tolower(y)]++;
+            }
+            int flag=0;
+            for(auto x1:mp1)
+            {   
+                if(mp2[x1.first]<x1.second)
+                {
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0)
+            {
+                if(s.length()==0)
+                {
+                    s=x;
+                }
+                else
+                {
+                    if(x.length()<s.length())
+                        s=x;
+                }
+            }
+        }
+        return s;
+    }
+};
