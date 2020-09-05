@@ -1,0 +1,56 @@
+class Solution {
+public:
+    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+        map<int,vector<string>> mp;
+        
+        for(int i=0;i<list1.size();i++)
+        {
+            for(int j=0;j<list2.size();j++)
+            {
+                if(list1[i]==list2[j])
+                {
+                    mp[i+j].push_back(list1[i]);
+                }
+            }
+        }
+        for(auto x:mp)
+        {
+            return x.second;
+        }
+        return list1;
+    }
+};
+
+...........................................................................................
+
+
+class Solution {
+public:
+    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+        unordered_map<string ,int> mp1,mp2;
+        vector<string> s;
+        for(int i=0;i<list1.size();i++)
+        {
+            mp1[list1[i]]=i+1;
+        }
+        for(int i=0;i<list2.size();i++)
+        {
+            mp2[list2[i]]=i+1;
+        }
+        priority_queue<pair<int,string>,vector<pair<int,string>>,greater<pair<int,string>>> minH;
+        for(auto x: mp1)
+        {
+            if(mp2[x.first]!=0)
+            {
+                minH.push({x.second+mp2[x.first],x.first});
+            }
+        }
+        int mn=minH.top().first;
+        while(minH.size()>0&&mn==minH.top().first)
+        {
+                s.push_back(minH.top().second);
+                minH.pop();
+        }
+        return s;
+    }
+};
