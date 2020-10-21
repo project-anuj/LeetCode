@@ -1,0 +1,25 @@
+..........................100%...........................
+
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        return __builtin_popcount(x^y);
+        
+    }
+};
+
+..........................................................
+
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        int cnt=0;
+        int mx=x^y;
+        while(mx>0)
+        {
+            cnt++;
+            mx=mx&(mx-1);   
+        }
+        return cnt;
+    }
+};
