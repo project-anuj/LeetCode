@@ -1,0 +1,11 @@
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        int res=0;
+        for(auto x: s)
+            res=res^x;
+        for(auto x: t)
+            res=res^x;
+        return res;
+    }
+};
