@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        int b=n&1;
+        n>>=1;
+        while(n>0)
+        {
+            int x=n&1;
+            if(x==b)
+                return false;
+            b=x;
+            n=n>>1;
+        }
+        return true;
+    }
+};
