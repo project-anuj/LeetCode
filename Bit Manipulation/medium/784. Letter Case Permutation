@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<string> res;
+    void backtracking(string s,int i)
+    {
+        if(i==s.length())
+        {
+            res.push_back(s);
+            return;
+        }
+        backtracking(s,i+1);
+        if(isalpha(s[i]))
+        {
+            s[i]^=(1<<5);
+            backtracking(s,i+1);
+        }
+    }
+    vector<string> letterCasePermutation(string S) {
+        backtracking(S,0);
+    return res;    
+    }
+};
