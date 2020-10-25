@@ -1,6 +1,30 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
+        vector<int> res(2,0);
+        int n=0;
+        for(auto x:nums)
+        {
+            n^=x;
+        }
+        n=n&(-n); // to find the rightmost significant bit
+        for(int x:nums)
+        {
+            if(x&n)
+                res[0]^=x;
+            else
+                res[1]^=x;
+        }
+        return res;
+    }
+};
+
+.........................................................................
+                                OR
+.........................................................................
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
         unordered_map<int,int> mp;
         for(auto x:nums)
             mp[x]++;
