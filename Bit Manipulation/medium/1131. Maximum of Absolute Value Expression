@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int maxAbsValExpr(vector<int>& arr1, vector<int>& arr2) {
+        int n=arr1.size();
+        vector<int> bracket1(n,0),bracket2(n,0),bracket3(n,0),bracket4(n,0);
+        for(int i=0;i<n;i++)
+        {
+            bracket1[i]=arr1[i]+arr2[i]+i;
+            bracket2[i]=arr1[i]-arr2[i]+i;
+            bracket3[i]=arr1[i]+arr2[i]-i;
+            bracket4[i]=arr1[i]-arr2[i]-i;
+        }
+        int max_bracket1=bracket1[0],max_bracket2=bracket2[0],max_bracket3=bracket3[0],max_bracket4=bracket4[0];
+        int min_bracket1=bracket1[0],min_bracket2=bracket2[0],min_bracket3=bracket3[0],min_bracket4=bracket4[0];
+        for(int i=0;i<n;i++)
+        {
+            max_bracket1=max(max_bracket1,bracket1[i]);
+            min_bracket1=min(min_bracket1,bracket1[i]);
+            
+            max_bracket2=max(max_bracket2,bracket2[i]);
+            min_bracket2=min(min_bracket2,bracket2[i]);
+            
+            max_bracket3=max(max_bracket3,bracket3[i]);
+            min_bracket3=min(min_bracket3,bracket3[i]);
+            
+            max_bracket4=max(max_bracket4,bracket4[i]);
+            min_bracket4=min(min_bracket4,bracket4[i]);
+        }
+        return max(max_bracket1-min_bracket1,max(max_bracket2-min_bracket2,max(max_bracket3-min_bracket3,max_bracket4-min_bracket4)));
+    }
+};
