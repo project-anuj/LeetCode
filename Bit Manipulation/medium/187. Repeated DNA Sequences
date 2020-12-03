@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        vector<string > res;
+
+        if(s.length()<10)
+            return res;
+        unordered_map<string,int> mp,mp1;
+        for(int i=0;i<=s.length()-10;i++)
+        {
+            string s1=s.substr(i,10);
+            cout<<s1<<endl;
+            if(mp[s1]>0 && mp1[s1]==0)
+            {
+                res.push_back(s1);
+                mp1[s1]++;
+            }
+            else
+                mp[s1]++;
+        }
+        return res;
+    }
+};
