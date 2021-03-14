@@ -1,0 +1,247 @@
+___________________________________________________________________
+              1678. Goal Parser Interpretation
+___________________________________________________________________
+
+class Solution {
+public:
+    string interpret(string command) {
+        int n = command.length();
+        string res="";
+        for(int i=0;i<n;i++)
+        {
+            if(command[i] == 'G')
+            {
+                res+="G";
+            }
+            else if(command[i]=='(' && command[i+1]==')')
+            {
+                res+="o";
+                i++;
+            }
+            else
+            {
+                res+="al";
+                i+=3;
+            }
+        }
+        return res;
+    }
+};
+________________________________________________________________
+            1221. Split a String in Balanced Strings
+________________________________________________________________
+
+class Solution {
+public:
+    int balancedStringSplit(string s) {
+        int res=0;
+        int cnt=0;
+        if(s[0]=='L')
+            cnt=1;
+        else
+            cnt=-1;
+        int n=s.length();
+        for(int i=1;i<n;i++)
+        {
+            if(s[i]=='R')
+                cnt--;
+            else
+                cnt++;
+            if(cnt==0)
+                res++;
+            
+        }
+        return res;
+    }
+    
+};
+
+___________________________________________________________________________
+              1614. Maximum Nesting Depth of the Parentheses
+___________________________________________________________________________
+
+class Solution {
+public:
+    int maxDepth(string s) {
+        int res=0;
+        int cnt=0;
+        for(int i=0;i<s.length();i++)
+            if(s[i]=='(')
+            {
+                cnt++;
+                res=max(res,cnt);
+            }
+            else if(s[i]==')')
+                cnt--;
+                
+        return res;
+    }
+};
+_____________________________________________________________________________
+              1662. Check If Two String Arrays are Equivalent
+_____________________________________________________________________________
+
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        string s1="",s2="";
+        for(auto s : word1)
+            s1+=s;
+        for(auto s : word2)
+            s2+=s;
+        return s1==s2;
+    }
+};
+____________________________________________________________________________
+              1684. Count the Number of Consistent Strings
+____________________________________________________________________________
+
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        int res=0;
+        unordered_map<char,int> mp;
+        for(auto x : allowed)
+            mp[x]=1;
+        for(auto x: words)
+        {
+            bool flag=false;
+            for(int i=0;i<x.length();i++)
+            {
+                if(mp[x[i]]==0)
+                {
+                    flag=true;
+                    break;
+                }
+            }
+            if(flag== false)
+                res++;
+        }
+        return res;
+    }
+};
+
+_______________________________________________________________________________
+                              709. To Lower Case
+_______________________________________________________________________________
+class Solution {
+public:
+    string toLowerCase(string str) {
+        int n=str.length();
+        string res="";
+        for(int i=0;i<n;i++)
+            if(str[i]>=65 && str[i]<=90)
+                res+=string(1,str[i]+32);
+            else
+                res+=string(1,str[i]);
+        
+        return res;
+    }
+};
+
+_______________________________________________________________________________
+                         804. Unique Morse Code Words
+_______________________________________________________________________________
+
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        vector<string> m = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        
+        set<string> st;
+        for(string s : words)
+        {
+            string res="";
+            for(char c : s)
+            {
+                res+=m[c-97];
+            }
+            st.insert(res);
+        }
+        return st.size();
+    }
+};
+
+________________________________________________________________________________
+            1309. Decrypt String from Alphabet to Integer Mapping
+________________________________________________________________________________
+class Solution {
+public:
+    string freqAlphabets(string s) {
+        string res="";
+        int n=s.length();
+        for(int i=0;i<n;i++)
+        {
+            if(i+2<n && s[i+2]=='#')
+            {
+                int m = (s[i]-48)*10+ (s[i+1]-48);
+                res+=string(1,'a'+m-1);
+                i+=2;
+            }
+            else
+            {
+                res+=string(1,'a'+s[i]-48-1);
+            }
+        }
+        return res;
+    }
+};
+
+_____________________________________________________________________________________
+                              1436. Destination City
+_____________________________________________________________________________________
+
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        unordered_map<string,int> mp;
+        for(auto y: paths)
+        {
+            mp[y[0]]++;
+        }
+        for(auto x : paths)
+            if(mp[x[1]] == 0)
+            {
+                return x[1];
+            }
+        return "";
+    }
+};
+
+_______________________________________________________________________________________
+                          1768. Merge Strings Alternately
+_______________________________________________________________________________________
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        int m=word1.length();
+        int n=word2.length();
+        string res="";
+        for(int i=0;i<min(m,n);i++)
+        {
+            res+=string(1,word1[i]);
+            res+=string(1,word2[i]);
+        }
+        if(m<n)
+            res+=word2.substr(m,n);
+        else
+            res+=word1.substr(n,m);
+        return res;
+    }
+};
+
+_______________________________________________________________________________________
+
+_______________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
